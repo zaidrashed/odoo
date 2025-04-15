@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: shipsy-webhook
+    env: python
+    branch: main
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python shipsy_webhook.py"
+    envVars:
+      - key: ODOO_URL
+        value: http://localhost:8069/jsonrpc
+      - key: ODOO_DB
+        value: odoo
+      - key: ODOO_UID
+        value: "1"
+      - key: ODOO_API_KEY
+        value: b6bca92a44fc313ac091c36e5542fd00fdf1b0c6
