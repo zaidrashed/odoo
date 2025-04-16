@@ -11,9 +11,8 @@ ODOO_UID = 2
 ODOO_API_KEY = "b6bca92a44fc313ac091c36e5542fd00fdf1b0c6"
 
 def convert_timestamp(ts):
-    # التحقق إذا كانت القيمة None
-    if ts is None:
-        return None  # أو يمكن تعيين تاريخ افتراضي مثل '1900-01-01'
+    if not ts:  # التحقق من القيمة إذا كانت None أو فارغة أو صفرية
+        return "1900-01-01"  # تعيين تاريخ افتراضي
     return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
 
 def call_odoo(model, method, args):
