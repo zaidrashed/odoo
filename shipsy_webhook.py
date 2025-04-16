@@ -1,4 +1,3 @@
-import os
 from flask import Flask, request
 import requests
 import datetime
@@ -12,6 +11,9 @@ ODOO_UID = 2
 ODOO_API_KEY = "b6bca92a44fc313ac091c36e5542fd00fdf1b0c6"
 
 def convert_timestamp(ts):
+    # التحقق إذا كانت القيمة None
+    if ts is None:
+        return None  # أو يمكن تعيين تاريخ افتراضي مثل '1900-01-01'
     return datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
 
 def call_odoo(model, method, args):
@@ -97,5 +99,4 @@ def webhook():
     }
 
 if __name__ == "__main__":
-    # تعديل البورت ليتناسب مع بيئة Render
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    app.run(host='0.0.0.0', port=5000)
