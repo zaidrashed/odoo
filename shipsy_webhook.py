@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request
 import requests
 import datetime
@@ -96,4 +97,5 @@ def webhook():
     }
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    # تعديل البورت ليتناسب مع بيئة Render
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
